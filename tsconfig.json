@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "module": "commonjs",
+    "noEmit": true,
+    "target": "es2018"
+  },
+  "exclude": [
+    "dist"
+  ]
+}

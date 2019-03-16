@@ -1,0 +1,51 @@
+.HannyaRoller-space {
+  --rotation-progress: 0; /* set in style attr */
+
+  background-color: black;
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+.HannyaRoller-roller {
+  --font-size: 0; /* set in style attr */
+  --letters-in-line: 0; /* set in style attr */
+  --lines: 0; /* set in style attr */
+  --perspective: 100vw;
+  --rotate-x: 0deg;
+  --surface-height: 0; /* set in style attr */
+
+  animation: HannyaRoller-rollerInitialRotate 3s cubic-bezier(0.23, 1, 0.32, 1);
+  background-color: #0006;
+  font-size: var(--font-size);
+  height: 100%;
+  position: relative;
+  transform: perspective(var(--perspective));
+  transform-style: preserve-3d;
+  width: 100%;
+}
+.HannyaRoller-line {
+  --line-index: 0; /* set in style attr */
+  --line-progress: calc(var(--line-index) / var(--lines));
+  --line-rotation-progress: calc(var(--rotation-progress) - var(--line-progress));
+
+  left: calc(50% - 0.5em);
+  position: absolute;
+  top: calc(50% - (var(--surface-height) / 2));
+  transform:
+    rotateY(calc(var(--line-rotation-progress) * 360deg))
+    translateZ(calc(var(--perspective) * 0.4));
+}
+.HannyaRoller-letter {
+  font-family: a-otf-midashi-mi-ma31-pr6n, "Yu Mincho", sans-serif;
+  font-weight: bold;
+  line-height: 1em;
+  padding-bottom: calc((var(--surface-height) - 1em) / (var(--letters-in-line) - 1) - 1em);
+  text-align: center;
+  width: 1em;
+}
+
+@keyframes HannyaRoller-rollerInitialRotate {
+  0% { transform: perspective(var(--perspective)) rotateY(-720deg); }
+  100% { transform: perspective(var(--perspective)) rotateY(0deg); }
+}
